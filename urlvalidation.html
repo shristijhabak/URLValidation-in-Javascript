@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>URL</title>
+        <script type="text/javascript">
+            let isvalid = 0;
+            function validate() {
+                var url = document.getElementById("url").value;
+                var pattern = /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
+
+                if (pattern.test(url)) {
+                    document.getElementById("isvalid").innerHTML = "Url is valid!";
+
+                } else {
+                    isvalid++;
+                    document.getElementById("isvalid").innerHTML = "Url is not valid!";
+                }
+
+                if (isvalid >= 3) {
+                    document.getElementById("sessionmessage").innerHTML = "Your session is expired";
+                    setTimeout(function () {
+                        window.location.reload(true);
+                    }, 1000);
+                }
+                return false;
+            }
+        </script>
+
+    </head>
+    <body>
+        <p id="sessionmessage"></p>
+        <p id="isvalid"></p>
+        URL :
+        <form action="" onsubmit="return validate();" autocomplete="on" method="get">
+            <input type="text" name="url" id="url" />
+            <input type="submit" value="Check" />
+        </form>
+    </body>
+</html>
